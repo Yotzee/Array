@@ -6,19 +6,18 @@
 template <class T> class Array
 {
       private:
-	int default_array_size;
+#define __default_array_size_ 10
+	long _array_size;
+	long _length;
+
 	void initArray()
 	{
 		_length = 0;
-		default_array_size = 10;
-		if (_size == 0) {
-			_size = default_array_size;
+		if (_array_size == 0) {
+			_array_size = 10;
 		}
-		_array = (array_struct *)malloc(sizeof(array_struct) * _size);
+		_array = (array_struct *)malloc(sizeof(array_struct) * _array_size);
 	}
-
-	long _size;
-	long _length;
 
 	struct array_struct {
 		T value;
@@ -29,14 +28,44 @@ template <class T> class Array
       public:
 	Array()
 	{
-		_size = default_array_size;
+		_array_size = __default_array_size_;
 		initArray();
 	}
 
 	Array(long size)
 	{
-		_size = size;
+		_array_size = size;
 		initArray();
+	}
+
+	~Array()
+	{
+		delete (_array);
+	}
+
+	void remove(long key)
+	{
+		if (key < _length) {
+			struct array_struct *new_array = (array_struct *)malloc(sizeof(array_struct) * _array_size);
+			memset(new_array, '\0', sizeof(array_struct) * _array_size);
+			memcpy(new_array, _array, (sizeof(array_struct) * (key)));
+			memcpy(new_array + key + 1, _array + key + 1, (sizeof(array_struct) * _array_size) - (sizeof(array_struct) * (key - 1)));
+			delete (_array);
+			_array = new_array;
+			//_length--;
+		} else {
+			struct array_struct *new_array = (array_struct *)malloc(sizeof(array_struct) * _array_size);
+			memset(new_array, '\0', sizeof(array_struct) * _array_size);
+			memcpy(new_array, _array, (sizeof(array_struct) * _length - 1));
+			delete (_array);
+			_array = new_array;
+			//_length--;
+		}
+	}
+
+	int length()
+	{
+		return getLength();
 	}
 
 	int getLength()
@@ -46,14 +75,15 @@ template <class T> class Array
 
 	void append(T value)
 	{
-		if (_length > _size) {
+		if (_length > _array_size) {
 			// add to array
-			long new_size = default_array_size + _size;
-			printf("%ld\n", _size);
+			long new_size = __default_array_size_ + _array_size;
 			struct array_struct *new_array = (array_struct *)malloc(sizeof(array_struct) * new_size);
+			memset(new_array, '\0', sizeof(array_struct) * _array_size);
 			memcpy(new_array, _array, (sizeof(array_struct) * new_size));
+			delete (_array);
 			_array = new_array;
-			_size = default_array_size + _size;
+			_array_size = __default_array_size_ + _array_size;
 		}
 		_array[_length++].value = value;
 	}
