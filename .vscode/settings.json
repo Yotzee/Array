@@ -1,0 +1,8 @@
+{
+	"files.associations": {
+		"__tuple": "cpp",
+		"__config": "cpp",
+		"iostream": "cpp",
+		"typeinfo": "cpp"
+	}
+}
