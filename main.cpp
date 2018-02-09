@@ -1,7 +1,5 @@
 #include "Array.hpp"
-#include <assert.h>
-#include <cstdlib>
-#include <iostream>
+
 int main(int argc, char *argv[])
 {
 	int count = 0;

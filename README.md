@@ -8,7 +8,7 @@
 
 ### Creates array of size 500 and will increase size every 200
 ```
-	Array<int> array = Array<int>(500); // 
+	Array<int> array = Array<int>(500);
 ```
 
 ### Add Object
