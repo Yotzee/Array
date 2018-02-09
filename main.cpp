@@ -1,29 +1,15 @@
 #include "Array.hpp"
+#include <assert.h>
+#include <cstdlib>
 #include <iostream>
-
 int main(int argc, char *argv[])
 {
-
-	Array<char> letters;
-	char lets[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghifklmnopqrstuvwxyz";
-	for(int i = 0; i < strlen(lets); i++){
-		letters += lets[i];	
+	int count = 0;
+	for(;;){
+		Array<int> array;
+		for (int i = 0; i < 1024; i++) {
+			array += i;
+		}
 	}
-	std::cout << letters.getLength() << std::endl;
-	letters.remove(letters.getLength());
-	std::cout << letters.getLength() << std::endl;
-	std::cout << letters[5] << std::endl;
-	letters.remove(2);
-	std::cout << letters.getLength() << std::endl;
-	std::cout << letters[5] << std::endl;
-	letters.remove(5);
-	std::cout << letters.getLength() << std::endl;
-	std::cout << letters[5] << std::endl;
-
-	for(int i = 0; i < letters.length(); i++){
-		std::cout << letters[i];
-	}
-
-
 	return 0;
 }
