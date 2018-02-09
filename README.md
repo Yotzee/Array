@@ -13,7 +13,7 @@
 
 ### Add Object
 ```
-	array += 1; // add number
+	array += 1;
 ```
 
 ### Remove Object at Index
