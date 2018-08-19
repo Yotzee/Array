@@ -1,4 +1,4 @@
-## C++ Dynamic Array
+# C++ Dynamic Array
 
 
 ### Creates array of size 200 and will increase size every 200
